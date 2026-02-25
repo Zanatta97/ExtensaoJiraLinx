@@ -1,56 +1,8 @@
-/*chrome.storage.local.set({
-  jiraUser: "c2FtdWVsLnphbmF0dGE=",
-  jiraPass: "U2FtODE1MDUxNTcxNA==",
-});
-
-let abaAguardandoReload = null;
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.acao === "monitorarAba") {
-    console.log("Monitorando aba:", message.tabId);
-    abaAguardandoReload = message.tabId;
-
-    chrome.tabs.onUpdated.addListener(
-      function primeiraInjecao(tabId, changeInfo) {
-        if (tabId === abaAguardandoReload && changeInfo.status === "complete") {
-          console.log("1ª carga completa, injetando script...");
-          chrome.tabs.onUpdated.removeListener(primeiraInjecao);
-
-          injetarScript(tabId);
-
-          chrome.tabs.onUpdated.addListener(
-            function segundaInjecao(tabId2, changeInfo2) {
-              if (
-                tabId2 === abaAguardandoReload &&
-                changeInfo2.status === "complete"
-              ) {
-                console.log("2ª carga completa, injetando script novamente...");
-                chrome.tabs.onUpdated.removeListener(segundaInjecao);
-
-                injetarScript(tabId2);
-                abaAguardandoReload = null;
-              }
-            },
-          );
-        }
-      },
-    );
-  }
-});
-
-function injetarScript(tabId) {
-  chrome.scripting
-    .executeScript({
-      target: { tabId: tabId },
-      files: ["content.js"],
-    })
-    .then(() => console.log("Script injetado com sucesso!"))
-    .catch((err) => console.error("Erro ao injetar:", err));
-}*/
-
 chrome.storage.local.set({
-  jiraUser: "c2FtdWVsLnphbmF0dGE=",
-  jiraPass: "U2FtODE1MDUxNTcxNA==",
+  jiraUser: "amlyYS5zdXBvcnRl",
+  jiraPass: "UyFzdDNtYUBKMXI0LTIwMjA=",
+  //jiraUser: "c2FtdWVsLnphbmF0dGE=",
+  //jiraPass: "U2FtODE1MDUxNTcxNA==",
 });
 
 let abaAguardandoReload = null;
