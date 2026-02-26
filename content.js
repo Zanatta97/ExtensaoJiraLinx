@@ -8,8 +8,21 @@ function preencherLogin() {
   if (userField && passField) {
     chrome.storage.local.get(["jiraUser", "jiraPass"], (data) => {
       if (data.jiraUser && data.jiraPass) {
-        userField.value = atob(data.jiraUser); // Decodifica de Base64
-        passField.value = atob(data.jiraPass); // Decodifica de Base64
+        //userField.value = atob(data.jiraUser); // Decodifica de Base64
+        //passField.value = atob(data.jiraPass); // Decodifica de Base64
+
+        //Usa eventos nativos do react para preencher os campos,
+        //garantindo que o Jira detecte as mudanças
+        const nativeSetter = Object.getOwnPropertyDescriptor(
+          window.HTMLInputElement.prototype,
+          "value",
+        ).set;
+
+        nativeSetter.call(userField, atob(data.jiraUser));
+        userField.dispatchEvent(new Event("input", { bubbles: true }));
+
+        nativeSetter.call(passField, atob(data.jiraPass));
+        passField.dispatchEvent(new Event("input", { bubbles: true }));
 
         if (rememberMe && !rememberMe.checked) {
           rememberMe.checked = true;
