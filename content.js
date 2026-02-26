@@ -1,3 +1,4 @@
+//Preenche os dados do form de login e dispara o click do botão de submit
 function preencherLogin() {
   const userField = document.getElementById("login-form-username");
   const passField = document.getElementById("login-form-password");
@@ -25,6 +26,10 @@ function preencherLogin() {
   }
 }
 
+//Função criada para monitorar abas do jira
+//Caso detecte o botão de continuar para login, dispara o click
+//Caso detecte os campos do form de login, para o monitoramento
+//Desta forma a execução segue para preencher o login
 function aguardarElementoEExecutar() {
   const xpath =
     "//span[contains(text(), 'Continuar com nome de usuário e senha')]";
@@ -71,6 +76,7 @@ function aguardarElementoEExecutar() {
   });
 }
 
+//Valida se a URL atual é a de login do Jira e inicia o processo de monitoramento
 if (window.location.href.includes("jira.linx.com.br/login")) {
   aguardarElementoEExecutar();
   preencherLogin();

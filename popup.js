@@ -1,6 +1,7 @@
 function realizarPesquisa() {
   var urlFinal = "";
 
+  //Valida se algum campo está preenchido ou se os dois estão ao mesmo tempo
   if (
     document.getElementById("autoInput").value &&
     document.getElementById("textoInput").value
@@ -18,6 +19,7 @@ function realizarPesquisa() {
   }
 }
 
+//Adiciona o listener para o click do botão
 document
   .getElementById("btnPesquisar")
   .addEventListener("click", realizarPesquisa);
@@ -27,6 +29,7 @@ const inputs = [
   document.getElementById("textoInput"),
 ];
 
+//Valida se o Enter foi pressionado e realiza a pesquisa
 inputs.forEach((input) => {
   input.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
@@ -35,6 +38,7 @@ inputs.forEach((input) => {
   });
 });
 
+//Chama a função do service worker para abrir a aba do Jira e realizar o login caso necessário
 function openJiraWithAutoLogin(url) {
   chrome.storage.local.set(
     {

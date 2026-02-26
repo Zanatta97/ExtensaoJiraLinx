@@ -1,13 +1,14 @@
+//Dados de Login em Base64 para evitar exposição direta,
+//mesmo que seja facilmente reversível
 chrome.storage.local.set({
   jiraUser: "amlyYS5zdXBvcnRl",
   jiraPass: "UyFzdDNtYUBKMXI0LTIwMjA=",
-  //jiraUser: "c2FtdWVsLnphbmF0dGE=",
-  //jiraPass: "U2FtODE1MDUxNTcxNA==",
 });
 
 let abaAguardandoReload = null;
-let onTabUpdatedGlobal = null; // Guarda referência para remover depois
+let onTabUpdatedGlobal = null;
 
+//Adiciona um listener para mensagens vindas do popup.js
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.acao === "monitorarAba") {
     console.log("Monitorando aba:", message.tabId);
@@ -22,6 +23,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const MAX_INJECOES = 5;
     let urlOriginalSalva = false;
 
+    //Como a aba do Jira pode passar por vários redirecionamentos durante o login,
+    //são monitoradas as atualizações da aba para detectar quando o login é concluído
+    //e redirecionar para a URL original
     onTabUpdatedGlobal = function (tabId, changeInfo, tab) {
       if (tabId !== abaAguardandoReload || changeInfo.status !== "complete")
         return;
@@ -33,10 +37,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         urlOriginalSalva = true;
       }
 
+      //Injeta o script na aba
       injecoes++;
-      console.log(`Carga ${injecoes} completa, injetando script...`);
+      console.log(`Carga ${injecoes} completa, injetando script`);
       injetarScript(tabId);
 
+      //Definido limite de 5 injeções para evitar loops infinitos
+      //caso algo dê errado no processo de login
       if (injecoes >= MAX_INJECOES) {
         console.log("Máximo de injeções atingido, removendo listener.");
         chrome.tabs.onUpdated.removeListener(onTabUpdatedGlobal);
@@ -86,6 +93,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+//injeta o script do content.js na abda do Jira
 function injetarScript(tabId) {
   chrome.scripting
     .executeScript({
