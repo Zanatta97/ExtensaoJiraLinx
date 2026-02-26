@@ -12,7 +12,7 @@ function realizarPesquisa() {
 
     openJiraWithAutoLogin(urlFinal);
   } else if (document.getElementById("textoInput").value) {
-    urlFinal = `https://jira.linx.com.br/browse/AUTO-99999?filter=19917&jql=project%20%3D%20AUTO%20AND%20text%20~%20${encodeURIComponent(document.getElementById("textoInput").value)}%20ORDER%20BY%20key%20DESC%2C%20Rank%20DESC`;
+    urlFinal = `https://jira.linx.com.br/browse/AUTO-99999?filter=19917&jql=project%20%3D%20AUTO%20AND%20text%20~%20%22${encodeURIComponent(document.getElementById("textoInput").value)}%22%20ORDER%20BY%20key%20DESC%2C%20Rank%20DESC`;
     openJiraWithAutoLogin(urlFinal);
   } else {
     alert("Digite um valor!");
