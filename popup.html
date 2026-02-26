@@ -13,118 +13,12 @@
     />
     <meta charset="UTF-8" />
     <style>
-      :root {
-        /* Primary */
-        --primary-purple: #411e5a; /* Roxo principal LINX */
-        --primary-violet: #5d00a5; /* Violeta principal LINX */
-        --primary-orange: #f0462d; /* Laranja principal LINX */
-        --primary-yellow: #ffb200; /* Amarelo principal LINX */
-
-        /* Secondary */
-        --secondary-purple-dark: #280a3c; /* Roxo Escuro LINX */
-        --secondary-purple-light: #c994f2; /* Roxo Claro LINX */
-        --secondary-lavender: #d3ceea; /* Lavanda LINX */
-        --secondary-grapefruit: #ff7f00; /* Toranja LINX */
-        --secondary-terracotta: #d23c28; /* Terracota LINX */
-
-        /* Neutral */
-        --neutral-black: #0c0c0c; /* Preto LINX */
-        --neutral-graphite: #4f4f4f; /* Grafite LINX */
-        --neutral-gray: #a1a1a1; /* Cinza LINX */
-        --neutral-ice: #f0f0f0; /* Gelo LINX */
-        --neutral-white: #fefefe; /* Branco LINX */
-
-        /* Tertiary */
-        --tertiary-lilac-retail: #a47be6; /* Lilás RETAIL */
-        --tertiary-blue-automotive: #377fef; /* Azul AUTOMOTIVO */
-        --tertiary-green-pharma: #9cc300; /* Verde Farma */
-        --tertiary-orange-food: #ff890a; /* Laranja Claro FOOD */
-        --tertiary-turquoise-postos: #00bbaa; /* Turquesa POSTOS */
-        --tertiary-silver-enterprise: #b2b2b2; /* Prata ENTERPRISE */
-      }
-      body {
-        width: 250px;
-        padding: 15px;
-        font-family: "Nunito", sans-serif;
-        background: linear-gradient(to right, #411e5a, #5d00a5);
-        color: white;
-        box-sizing: border-box;
-      }
-      input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        margin-right: 15px;
-        border-radius: 5px;
-        position: relative;
-        box-sizing: border-box;
-      }
-      input[type="number"] {
-        appearance: textfield;
-      }
-      button {
-        width: 100%;
-        padding: 8px;
-        cursor: pointer;
-        background: #f0462d;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-weight: bolder;
-      }
-
-      .tooltip {
-        position: relative;
-        display: inline-block;
-        cursor: help;
-        margin-left: 5px;
-        color: red;
-        box-sizing: border-box;
-      }
-
-      /* Texto da dica (escondido por padrão) */
-      .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 180px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 8px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%; /* Aparece acima do ícone */
-        left: 50%;
-        margin-left: -90px; /* Metade da largura para centralizar */
-        opacity: 0;
-        transition: opacity 0.3s;
-        font-size: 11px;
-        font-weight: normal;
-        line-height: 1.4;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-      }
-
-      /* Pequena seta abaixo do balão */
-      .tooltip .tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #333 transparent transparent transparent;
-      }
-
-      /* Mostrar ao passar o mouse */
-      .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-      }
+      @import url("styles.css");
     </style>
   </head>
   <body>
     <h2>Pesquisa JIRA</h2>
+    <!--
     <p style="color: red; font-weight: 600">
       Lembre-se de logar no JIRA antes de realizar a pesquisa!
       <span class="tooltip"
@@ -135,6 +29,7 @@
         >
       </span>
     </p>
+    -->
     <h3>Número da AUTO</h3>
     <input type="number" id="autoInput" placeholder="Ex:99999" />
 

@@ -17,5 +17,9 @@
       "32": "icons/linx32.png"
     }
   },
-  "permissions": ["tabs"]
+  "permissions": ["tabs", "storage", "scripting", "activeTab"],
+  "host_permissions": ["https://jira.linx.com.br/*"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
