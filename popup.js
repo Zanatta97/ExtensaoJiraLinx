@@ -42,12 +42,16 @@ inputs.forEach((input) => {
 function openJiraWithAutoLogin(url) {
   chrome.storage.local.set(
     {
-      originalUrl: url,
+      urlOriginal: url,
       autoLoginEnabled: true,
     },
     () => {
       chrome.tabs.create({ url: url }, (tab) => {
-        chrome.runtime.sendMessage({ acao: "monitorarAba", tabId: tab.id });
+        if (tab && tab.id) {
+          chrome.runtime.sendMessage({ acao: "monitorarAba", tabId: tab.id });
+        } else {
+          console.error("Erro ao criar aba do Jira");
+        }
       });
     },
   );
